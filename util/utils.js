@@ -1,4 +1,3 @@
-/// 工具?
 var querystring = require('querystring');
 
 exports.isString = function (a) {
@@ -32,7 +31,7 @@ exports.extend = function (target, source, rewrite){
 
 /**
  * @param {Object} obj
- * @param {String} mapping, 'a b,c d' ??性a?成b，??性c?成d
+ * @param {String} mapping, 'a b,c d' ??
  */
 exports.switchAttr = function (obj, mapping){
     if (typeof obj !== 'object' || typeof mapping !== 'string'){

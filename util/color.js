@@ -1,4 +1,3 @@
-/// 控制台?出?色
 module.exports = function (color, n) {
     var styles = {
         'bold'          : ['\x1B[1m', '\x1B[22m'],
