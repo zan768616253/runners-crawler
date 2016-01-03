@@ -16,4 +16,8 @@ var ports = [];
         })
         server.close();
     });
+
+    server.on('error', function () {
+        getPort(port + 1);
+    });
 })(baseport)

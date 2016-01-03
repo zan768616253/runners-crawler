@@ -3,8 +3,9 @@ var ejs = require('ejs');
 var path = require('path');
 var querystring = require('querystring');
 var url = require('url');
-var log4js = require('log4js');
-var root = path.join(__dirname, '../');
+//var root = path.join(__dirname, '../');
+
+var logger = require('./util/log.js').helper;
 
 var headInfo = {
     'Server': 'node.js',
@@ -19,7 +20,7 @@ var Routes = function() {
 Routes.prototype.views = function(path, model){
     var body;
     try {
-        body = fs.readFileSync(root + 'app/html/' + path + '.html', { encoding: 'utf8' });
+        body = fs.readFileSync(ROOT + 'app/html/' + path + '.html', { encoding: 'utf8' });
     } catch (error) {
         return;
     }
@@ -52,7 +53,7 @@ Routes.prototype.plain = function (data) {
         this.res.write(data);
         this.res.end();
     } else {
-        console.log('plain函数的参数必须为字符串');
+        logger.writeWarn('plain函数的参数必须为字符串');
     }
 }
 
@@ -67,7 +68,7 @@ Routes.prototype.get = function(path, fn) {
         that.res = res;
         fn.apply(that, [req, res]);
     }
-}
+};
 
 Routes.prototype.post = function (path, fn) {
     var that = this;
@@ -84,7 +85,7 @@ Routes.prototype.post = function (path, fn) {
             fn.apply(that, [req, res]);
         });
     }
-}
+};
 
 function query(uri) {
     return querystring.parse(url.parse(uri).query);
